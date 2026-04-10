@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_PASSWORD: nakama
+      POSTGRES_USER: nakama
+      POSTGRES_DB: nakama
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - nakama-net
+
+  redis:
+    image: redis:6
+    command: ["redis-server", "--save", "60", "1"]
+    networks:
+      - nakama-net
+
+  nakama:
+    build: .
+    restart: always
+    ports:
+      - "7350:7350"
+      - "7351:7351"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - nakama-net
+    command:
+      - "--config"
+      - "/nakama/data/local.yml"
+      - "--database.address"
+      - "nakama:nakama@postgres:5432/nakama"
+
+networks:
+  nakama-net:
+    driver: bridge

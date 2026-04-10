@@ -1,0 +1,17 @@
+name: "nakama"
+
+database:
+  address:
+    - "postgres:5432"
+  user: "nakama"
+  password: "nakama"
+  database: "nakama"
+
+runtime:
+  js_entrypoint: "tictactoe.js"
+
+socket:
+  server_key: "defaultkey"
+
+logger:
+  level: "INFO"

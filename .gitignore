@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+/.cache
+/.idea
+/.vscode
+frontend/node_modules/
+frontend/dist/
+backend/node_modules/
+backend/nakama/build/
+backend/nakama/dist/

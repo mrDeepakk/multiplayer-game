@@ -5,7 +5,8 @@ export default function Cell({ value, onClick, disabled }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className="bg-white shadow-md rounded-xl text-3xl font-bold hover:scale-105 transition"
+      aria-label={label ? `Cell ${label}` : "Empty cell"}
+      className="bg-white shadow-md rounded-xl text-2xl sm:text-3xl md:text-4xl font-bold hover:scale-105 transition aspect-square w-full h-full flex items-center justify-center"
     >
       {label}
     </button>

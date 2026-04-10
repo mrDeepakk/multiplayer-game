@@ -110,12 +110,13 @@ function applyResultStats(nk, state) {
     xStats.wins += 1;
     xStats.score += 200;
     oStats.losses += 1;
-    oStats.score = Math.max(0, oStats.score - 30);
+    oStats.score = Math.max(0, oStats.score - 50);
+    state.turn = MARK_O; // Losing player starts next round for balance
   } else if (state.winner === MARK_O) {
     oStats.wins += 1;
     oStats.score += 200;
     xStats.losses += 1;
-    xStats.score = Math.max(0, xStats.score - 30);
+    xStats.score = Math.max(0, xStats.score - 50);
   } else {
     xStats.draws += 1;
     oStats.draws += 1;
@@ -141,7 +142,8 @@ function finishGame(nk, state, winnerMark, winningLine, reason) {
 
 function resetRound(state) {
   state.board = makeEmptyBoard();
-  state.turn = MARK_X;
+  // Randomize starting turn so either player X or O can start
+  state.turn = Math.random() < 0.5 ? MARK_X : MARK_O;
   state.status = "playing";
   state.winner = null;
   state.winningLine = null;

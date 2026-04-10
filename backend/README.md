@@ -6,7 +6,7 @@ Start locally:
 
 ```bash
 cd backend/nakama
-docker compose up
+docker-compose up
 ```
 
 The Nakama HTTP API will be available at `http://localhost:7350` and socket at `ws://localhost:7351`.
